@@ -17,12 +17,20 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     license='MIT',
     url='https://github.com/RedMadRobot/aiomigrate',
+    install_requires=[
+        'asyncpg',
+        'setuptools',
+    ],
     packages=setuptools.find_packages(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests"],
     ),
     entry_points={
         'console_scripts': [
             'migrate = aiomigrate.run:main',
+        ],
+        'aiomigrate.drivers': [
+            'postgres = aiomigrate.postgres:Driver',
+            'postgresql = aiomigrate.postgres:Driver',
         ],
     },
     package_data={
